@@ -4,8 +4,10 @@
   "license": "MIT",
   "scripts": {
     "ng": "nx",
+    "serve:api": "nx run api:serve",
+    "serve:web": "nx serve",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "start": "nx serve",
+    "start": "concurrently \"npm run serve:api\" \"npm run serve:web\"",
     "build": "nx build",
     "test": "nx test"
   },
@@ -50,6 +52,7 @@
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "~5.10.0",
     "@typescript-eslint/parser": "~5.10.0",
+    "concurrently": "^7.1.0",
     "cypress": "^9.1.0",
     "eslint": "~8.7.0",
     "eslint-config-prettier": "8.1.0",
